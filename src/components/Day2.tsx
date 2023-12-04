@@ -10,13 +10,12 @@ export const Day2: React.FC<{ input: string }> = ({ input }) => {
   const greenCubes = 13
   const blueCubes = 14
 
-  const groupBy = (cubes: Cubes[]) =>
-    Object.entries(Object.groupBy(cubes, (e) => e.color))
-
-  const getMax = (cubes: Cubes[]) =>
-    cubes.reduce((max, v) => (v.quantity > max.quantity ? v : max), {
-      quantity: 0,
-    }).quantity
+  const groupByColor = (cubes: Cubes[]) =>
+    cubes.reduce(
+      (entryMap, e) =>
+        entryMap.set(e.color, [...(entryMap.get(e.color) || []), e.quantity]),
+      new Map()
+    )
 
   const cubeSet = input
     ? input
@@ -39,10 +38,12 @@ export const Day2: React.FC<{ input: string }> = ({ input }) => {
   const cubes = cubeSet
     .map((game) => ({
       ...game,
-      cubes: groupBy(game.cubes).map((cubes) => ({
-        color: cubes[0],
-        max: getMax(cubes[1]),
-      })),
+      cubes: Array.from(groupByColor(game.cubes).entries()).map(
+        (e: [string, number[]]) => ({
+          color: e[0],
+          max: e[1].reduce((max, v) => (v > max ? v : max), 0),
+        })
+      ),
     }))
     .map((game) => ({
       ...game,
