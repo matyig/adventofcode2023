@@ -1,13 +1,13 @@
 import React from 'react'
 
-export const Day1: React.FC = ({ input }) => {
-  const getFirstAndLastNummer = (nummer) => {
+export const Day1: React.FC<{ input: string }> = ({ input }) => {
+  const getFirstAndLastNummer = (nummer: string) => {
     const firstNummer = nummer.slice(0, 1)
     const lastNummer = nummer.slice(-1)
     return firstNummer + lastNummer
   }
 
-  const replaceAlphabetNummers = (line) => {
+  const replaceAlphabetNummers = (line: string) => {
     return line
       .replace(/one/g, 'o1e')
       .replace(/two/g, 't2o')
