@@ -45,7 +45,8 @@ export const Day1: React.FC<{ input: string }> = ({ input }) => {
     <div>
       <h2>--- Day 1: Trebuchet?! ---</h2>
       <p>
-        Result1: {result1} Result2: {result2}
+        Result1: <span data-testid="day1-result1">{result1}</span> Result2:{' '}
+        <span data-testid="day1-result2">{result2}</span>
       </p>
     </div>
   )

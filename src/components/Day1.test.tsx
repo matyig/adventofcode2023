@@ -9,7 +9,7 @@ describe('Day1', async () => {
     treb7uchet`
 
     render(<Day1 input={input} />)
-    expect(screen.getByText(/142/i)).toBeInTheDocument()
+    expect(screen.getByTestId('day1-result1')).toHaveTextContent('142')
   })
 
   it('result2 should be 281', () => {
@@ -22,6 +22,6 @@ describe('Day1', async () => {
     7pqrstsixteen`
 
     render(<Day1 input={input} />)
-    expect(screen.getByText(/281/i)).toBeInTheDocument()
+    expect(screen.getByTestId('day1-result2')).toHaveTextContent('281')
   })
 })
